@@ -40,8 +40,8 @@ Cегмент селектора, который был возвращен из 
 Проверяет первые 2 байта на ```0x4000```. Не работает на vmware v12+
 
 ### ```smsw```
-Данный трюк , проверяет Machine Status Word , информации про него мало [тык](https://github.com/rrbranco/blackhat2012/blob/master/Csrc/VMDetection/VMDetection/VMDetection.cpp#L89).\ 
-Но Суть такая же как у ```sidt``` и ```sgdt```
+Данный трюк , проверяет Machine Status Word , информации про него мало [тык](https://github.com/rrbranco/blackhat2012/blob/master/Csrc/VMDetection/VMDetection/VMDetection.cpp#L89). 
+Но суть такая же как у ```sidt``` и ```sgdt```
 
 ## Malware behavior
 ### C2 
