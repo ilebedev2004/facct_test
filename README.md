@@ -37,10 +37,11 @@
 То есть сохранение состояния задачи и его восстановление при повторном выполнении этой задачи. 
 Все состояния задачи хранятся в TSS(https://ru.wikipedia.org/wiki/TSS). На каждую задачу приходится один TSS.
 Cегмент селектора, который был возвращен из ```str```, указывает на TSS настоящей задачи.
-Проверяет первые 2 байта на 0x4000. Не работает на vmware v12+
+Проверяет первые 2 байта на ```0x4000```. Не работает на vmware v12+
 
 ### ```smsw```
-Данный трюк , проверяет Machine Status Word , информации про него мало [тык](https://github.com/rrbranco/blackhat2012/blob/master/Csrc/VMDetection/VMDetection/VMDetection.cpp#L89). Но Суть такая же как у ```sidt``` и ```sgdt```
+Данный трюк , проверяет Machine Status Word , информации про него мало [тык](https://github.com/rrbranco/blackhat2012/blob/master/Csrc/VMDetection/VMDetection/VMDetection.cpp#L89).\ 
+Но Суть такая же как у ```sidt``` и ```sgdt```
 
 ## Malware behavior
 ### C2 
