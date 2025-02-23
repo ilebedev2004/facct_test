@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/d073f51c-67bb-4957-b2a0-412d074e2d2e)# Preliminary analysis
+# Preliminary analysis
 ## Polymorphism
 Предварительно исследуя семпл в отладчике , в точке входа можно заметить выделение памяти и копирование семпла в эту область памяти , а так же в конце можно увидеть ```jmp eax```.
 ![image](https://github.com/user-attachments/assets/ecde3b4b-98e3-46a1-8cf1-3e1891373b8b)
@@ -113,3 +113,4 @@ CnC сервер , можно увидеть поставив break на Interne
 Что бы замести следы , малварь использует след. комманду ```cmd.exe /c timeout /t 3  & del /f /q ...```
 Ждет 3 секунды, а затем удаляет малварный файл без запроса подтверждения.
 ![image](https://github.com/user-attachments/assets/2b010885-31af-46a5-94ca-32972d857e33)
+Так же прикрепляю .idb дампа , на котором проводился анализ. 
