@@ -14,7 +14,7 @@
 ![image](https://github.com/user-attachments/assets/abfccb8e-381f-4587-bef8-8fd2b0c57ed6)
 
 ## Import
-Импорт зашифрован. Для получение используется функция , которая принимает индекс библиотеки и хеш имени процедуры.\
+Импорт зашифрован. Для получение используется функция , которая принимает индекс библиотеки и хеш.\
 ![image](https://github.com/user-attachments/assets/aaef868f-d5f5-498e-80cc-f4c3254208ee)
 ![image](https://github.com/user-attachments/assets/f4d2df87-7a75-4015-9abe-9ec171731c8b)
 ![image](https://github.com/user-attachments/assets/4bfd06e7-5755-4dcd-90cb-a21dd1315df2)
@@ -43,7 +43,7 @@ Cегмент селектора, который был возвращен из 
 
 ## Malware behavior
 ### C2 
-CnC сервер , можно увидеть поставив break на InternetConnectA . Но поскольку C2 протух , смысла от него особого нет
+CnC сервер , можно увидеть поставив break на ```InternetConnectA``` . Но поскольку C2 протух , смысла от него особого нет
 ![image](https://github.com/user-attachments/assets/cd893220-5610-408d-9792-3010e2200fcd)
 Малварное поведение определяется его обработчиками , которые отвечают за кражу тех или иных данных разберем основные.
 ![image](https://github.com/user-attachments/assets/3598ddae-2af3-49d2-8373-1b4cfcfcce83)
