@@ -1,4 +1,4 @@
-# Preliminary analysis
+![image](https://github.com/user-attachments/assets/d073f51c-67bb-4957-b2a0-412d074e2d2e)# Preliminary analysis
 ## Polymorphism
 Предварительно исследуя семпл в отладчике , в точке входа можно заметить выделение памяти и копирование семпла в эту область памяти , а так же в конце можно увидеть ```jmp eax```.
 ![image](https://github.com/user-attachments/assets/ecde3b4b-98e3-46a1-8cf1-3e1891373b8b)
@@ -19,17 +19,6 @@
 ![image](https://github.com/user-attachments/assets/f4d2df87-7a75-4015-9abe-9ec171731c8b)
 ![image](https://github.com/user-attachments/assets/4bfd06e7-5755-4dcd-90cb-a21dd1315df2)
 Хеш создается на стадии компиляции используя имя процедуры . Этот хеш используется для поиска нужной процедуры методом перебора таблцы экспорта.
-Теперь мы можем получить весь импорт , изменяя ```eip``` можно пробежаться по всем xref
-
-kernel32.GetUserDefaultLangID
-kernel32.FindFirstFileA
-kernel32.FindNextFileA
-kernel32.FindClose
-gdiplus.GdipDisposeImage
-gdiplus.GdipFree
-gdiplus.GdipCloneImage
-gdiplus.GdipCloneImage
-
 
 # Static analyze
 ## Anti - sandbox techniques
@@ -53,5 +42,74 @@ Cегмент селектора, который был возвращен из 
 Данный трюк , проверяет Machine Status Word , информации про него мало [тык](https://github.com/rrbranco/blackhat2012/blob/master/Csrc/VMDetection/VMDetection/VMDetection.cpp#L89). Но Суть такая же как у ```sidt``` и ```sgdt```
 
 ## Malware behavior
-### C2
+### C2 
+CnC сервер , можно увидеть поставив break на InternetConnectA . Но поскольку C2 протух , смысла от него особого нет
+![image](https://github.com/user-attachments/assets/cd893220-5610-408d-9792-3010e2200fcd)
+Малварное поведение определяется его обработчиками , которые отвечают за кражу тех или иных данных разберем основные.
+![image](https://github.com/user-attachments/assets/3598ddae-2af3-49d2-8373-1b4cfcfcce83)
 
+### Screenshots
+Данный обработчик отвечает за создание скриншотов , на каждом сущ. мониторе. 
+Используя EnumDisplayMonitors , перебирает каждый монитор в своем обработчике
+![image](https://github.com/user-attachments/assets/11dce231-fa9e-43a1-918c-522b4d03bc57)
+Сам скирншот создается через BltBlt . Больше информации [тут](https://www.unknowncheats.me/forum/battlefield-1-a/188209-bitblt-screenshots.html) \
+![image](https://github.com/user-attachments/assets/17bb891c-1e7a-41ea-ba7b-ccf97c76d493)
+
+### CryptoWallets
+Данный обработчик отвечает за кражу данных крипто-кошельков . Ищет файлы в
+* $(HOMEPATH)\AppData\Roaming\Electrum\wallets
+* $(HOMEPATH)\AppData\Roaming\MultiBit
+* $(HOMEPATH)\AppData\Roaming\Armory
+* $(HOMEPATH)\AppData\Roaming\Ethereum\keystore
+* $(HOMEPATH)\AppData\Roaming\bytecoin
+* $(HOMEPATH)\AppData\Roaming\Jaxx\Local Storage
+* $(HOMEPATH)\AppData\Roaming\com.liberty.jaxx\Local Storage\leveldb
+* $(HOMEPATH)\AppData\Roaming\atomic\Local Storage\leveldb
+* $(HOMEPATH)\AppData\Roaming\Exodus
+* $(HOMEPATH)\AppData\Roaming\DashCore
+* $(HOMEPATH)\AppData\Roaming\Bitcoin
+* $(HOMEPATH)\AppData\Roaming\WalletWasabi
+* $(HOMEPATH)\AppData\Roaming\Daedalus Mainnet
+* $(HOMEPATH)\documents\Monero
+
+### Steam
+Данный обработчик отвечает за кражу данных Steam . Ищет SteamPath в реестре HKEY_CURRENT_USER\Software\Valve\Steam 
+Если находит , крадет все файлы по пути \config\*.vdf. По такой же аналогии работают остальные обработчики
+* Telegram
+* Discord
+* Jabber
+* Foxmail
+* Outlook
+* Filezilla
+
+##№ Internet Explorer
+Данный обработчик крадет данные IE используя vaultcli библеотеку. Пример эксплуатации [тык](https://github.com/twelvesec/passcat/blob/master/passcat/libvaultie.cpp#L148)
+![image](https://github.com/user-attachments/assets/cbd3f5b5-46cc-4abf-862d-551755f4a5f2)
+
+### PC Information
+Данный обработчик собирают основную информацию с ПК.
+#### UID/HWID
+![image](https://github.com/user-attachments/assets/e5625998-96c3-419e-803e-88e1170accd3)
+#### Os version 
+![image](https://github.com/user-attachments/assets/10101eef-756c-4367-8219-261eb83dcd1f)
+#### Username
+![image](https://github.com/user-attachments/assets/7ed29bb9-a68e-44ab-a52a-1f106d69b8ca)
+#### Computer name
+![image](https://github.com/user-attachments/assets/89b49843-2d0c-42f5-b7c1-dba1c4ac7054)
+#### Primary domain
+![image](https://github.com/user-attachments/assets/3ca5b359-7aa2-44ba-b0e9-93cd7d4cdbb8)
+#### Support languages
+![image](https://github.com/user-attachments/assets/39262732-b321-43fa-8e1e-3dc3e2b707b9)
+#### CPU vendor information
+![image](https://github.com/user-attachments/assets/163895cf-8661-485a-82c9-810e4dc80d35)
+#### GPU name
+![image](https://github.com/user-attachments/assets/d3487756-25fa-4d4e-800c-08a07506d340)
+#### Ram size
+![image](https://github.com/user-attachments/assets/5669315d-e2c8-448c-b64d-dee23cbd8280)
+### Display resolution
+![image](https://github.com/user-attachments/assets/bbb89e6e-4abe-4b9f-bd15-a4b882d412d1)
+
+## Conclusion
+Что бы замести следы , малварь использует след. комманду ```cmd.exe /c timeout /t 3  & del /f /q ...```
+Ждет 3 секунды, а затем удаляет малварный файл без запроса подтверждения.
+![image](https://github.com/user-attachments/assets/2b010885-31af-46a5-94ca-32972d857e33)
