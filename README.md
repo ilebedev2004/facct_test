@@ -52,7 +52,7 @@ CnC сервер , можно увидеть поставив break на Interne
 Данный обработчик отвечает за создание скриншотов , на каждом сущ. мониторе. 
 Используя EnumDisplayMonitors , перебирает каждый монитор в своем обработчике
 ![image](https://github.com/user-attachments/assets/11dce231-fa9e-43a1-918c-522b4d03bc57)
-Сам скирншот создается через BltBlt . Больше информации [тут](https://www.unknowncheats.me/forum/battlefield-1-a/188209-bitblt-screenshots.html) \
+Сам скирншот создается через BltBlt . Больше информации [тут](https://www.unknowncheats.me/forum/battlefield-1-a/188209-bitblt-screenshots.html)\
 ![image](https://github.com/user-attachments/assets/17bb891c-1e7a-41ea-ba7b-ccf97c76d493)
 
 ### CryptoWallets
