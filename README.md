@@ -89,7 +89,7 @@ CnC сервер , можно увидеть поставив break на ```Inte
 ![image](https://github.com/user-attachments/assets/cbd3f5b5-46cc-4abf-862d-551755f4a5f2)
 
 ### PC Information
-Данный обработчик собирают основную информацию с ПК.
+Данный обработчик собирают основную информацию с ПК и пытается отправить логом на сервер
 #### UID/HWID
 ![image](https://github.com/user-attachments/assets/e5625998-96c3-419e-803e-88e1170accd3)
 #### Os version 
