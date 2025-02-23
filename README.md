@@ -82,7 +82,7 @@ CnC сервер , можно увидеть поставив break на Interne
 * Outlook
 * Filezilla
 
-##№ Internet Explorer
+### Internet Explorer
 Данный обработчик крадет данные IE используя vaultcli библеотеку. Пример эксплуатации [тык](https://github.com/twelvesec/passcat/blob/master/passcat/libvaultie.cpp#L148)
 ![image](https://github.com/user-attachments/assets/cbd3f5b5-46cc-4abf-862d-551755f4a5f2)
 
