@@ -47,6 +47,12 @@ Cегмент селектора, который был возвращен из 
 ### C2 
 CnC сервер , можно увидеть поставив break на ```InternetConnectA``` . Но поскольку C2 протух , смысла от него особого нет
 ![image](https://github.com/user-attachments/assets/cd893220-5610-408d-9792-3010e2200fcd)
+Но выделим осоновные HTPP Post запросы.
+1. -> "/loader/complete/"
+2. -> "/dlls/"
+3. -> "/cfg/"
+4. -> "/log/"
+
 Малварное поведение определяется его обработчиками , которые отвечают за кражу тех или иных данных разберем основные.
 ![image](https://github.com/user-attachments/assets/3598ddae-2af3-49d2-8373-1b4cfcfcce83)
 
@@ -57,7 +63,7 @@ CnC сервер , можно увидеть поставив break на ```Inte
 Сам скирншот создается через BltBlt . Больше информации [тут](https://www.unknowncheats.me/forum/battlefield-1-a/188209-bitblt-screenshots.html)\
 ![image](https://github.com/user-attachments/assets/17bb891c-1e7a-41ea-ba7b-ccf97c76d493)
 
-### CryptoWallets
+### Cryptocurrency wallets
 Данный обработчик отвечает за кражу данных крипто-кошельков . Ищет файлы в
 * $(HOMEPATH)\AppData\Roaming\Electrum\wallets
 * $(HOMEPATH)\AppData\Roaming\MultiBit
@@ -74,22 +80,57 @@ CnC сервер , можно увидеть поставив break на ```Inte
 * $(HOMEPATH)\AppData\Roaming\Daedalus Mainnet
 * $(HOMEPATH)\documents\Monero
 
+### Discord
+В случае Discord он ищет каталоги и нацеливается на токены Discord. Токены зашифрованы, что бы рассшифровывать используюет след. функции (from base64), (DPAPI) и (AES с режимом GCM). 
+После того, как расшифровка завершена, он сохраняет украденную информацию в файле
+
 ### Steam
 Данный обработчик отвечает за кражу данных Steam . Ищет SteamPath в реестре HKEY_CURRENT_USER\Software\Valve\Steam 
 Если находит , крадет все файлы по пути \config\*.vdf. По такой же аналогии работают остальные обработчики
 * Telegram
-* Discord
 * Jabber
 * Foxmail
-* Outlook
 * Filezilla
-
+* WinSCP
+* Authy
+* NordVPN
+  
 ### Internet Explorer
 Данный обработчик крадет данные IE используя vaultcli библиотеку. Пример эксплуатации [тык](https://github.com/twelvesec/passcat/blob/master/passcat/libvaultie.cpp#L148)
 ![image](https://github.com/user-attachments/assets/cbd3f5b5-46cc-4abf-862d-551755f4a5f2)
 
 ### PC Information
-Данный обработчик собирают основную информацию с ПК и пытается отправить логом на сервер
+Данный обработчик собирают основную информацию с ПК и пытается отправить логом на сервер\
+Лог данного вида:
+```
+Network Info:
+\t- IP: IP?
+\t- Country: ISO?
+\n\n
+System Summary:
+\t- HWID: 
+\t- OS:
+\t- Architecture: 
+\t- UserName: 
+\t- Computer Name: 
+\t- Local Time: 
+\t- UTC: 
+\t- Language:
+\t- Keyboards: 
+\t- Laptop: 
+\t- Running Path: 
+\t- CPU: 
+\t- Threads:
+\t- Cores: 
+\t- RAM:
+\t- Display Resolution: 
+\t- GPU:
+User Agents:
+Installed Apps:
+All Users:
+Current User:
+Process List:
+```
 #### UID/HWID
 ![image](https://github.com/user-attachments/assets/e5625998-96c3-419e-803e-88e1170accd3)
 #### Os version 
